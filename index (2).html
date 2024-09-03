@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>	ELVIA - Advanced APK Protection & PLAYPROTECT REMOVE</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5a623;
+            --background-start: #3a1c71;
+            --background-end: #6b0f9c;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(to bottom right, var(--background-start), var(--background-end));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        h1:hover {
+            transform: scale(1.05);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .file-input-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-input-wrapper .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .file-input-wrapper:hover .btn {
+            background-color: #3a80d2;
+        }
+
+        #fileName {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #e09612;
+            transform: scale(1.05);
+        }
+
+        .alert {
+            background-color: #ff4d4f;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ELVIA APK TOOLS</h1>
+            <p class="subtitle">Advanced APK Protection & Signing Suite</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>Customize Your APK Protection</h2>
+                <form id="apkForm">
+                    <div class="file-input-wrapper">
+                        <button class="btn" type="button">Choose APK File</button>
+                        <input type="file" id="apkFile" accept=".apk" required>
+                    </div>
+                    <p id="fileName">No file chosen</p>
+
+                    <div class="alert" id="sizeAlert">
+                        <strong>Asset Encryption Unavailable:</strong> The APK file is too large for asset encryption (max 10MB). Other protection options are still available.
+                    </div>
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="dexEncryption" name="dexEncryption">
+                            <label for="dexEncryption">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <path d="M8 13h2"/>
+                                    <path d="M8 17h2"/>
+                                    <path d="M14 13h2"/>
+                                    <path d="M14 17h2"/>
+                                </svg>
+                                DEX Encryption
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="libEncryption" name="libEncryption">
+                            <label for="libEncryption">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 6l4 14"/>
+                                    <path d="M12 6v14"/>
+                                    <path d="M8 8v12"/>
+                                    <path d="M4 4v16"/>
+                                </svg>
+                                Library Encryption
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="assetsEncryption" name="assetsEncryption">
+                            <label for="assetsEncryption">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                Assets Encryption
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="apkEncryption" name="apkEncryption">
+                            <label for="apkEncryption">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                                </svg>
+                                APK Encryption
+                            </label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="apkSigning" name="apkSigning">
+                            <label for="apkSigning">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                                PLAY PROTECT FIX
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit">Protect and Sign APK</button>
+                </form>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <h3 class="feature-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        Multi-Layer Protection
+                    </h3>
+                    <p>Our advanced suite offers multiple layers of protection, securing every aspect of your APK.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                        Efficient Processing
+                    </h3>
+                    <p>Despite the comprehensive protection, our system ensures rapid processing and delivery of your secured APK.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                        Industry-Standard Security
+                    </h3>
+                    <p>We employ cutting-edge encryption techniques and trusted certificates to provide maximum security for your app.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 ELVIA APK TOOLS. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const MAX_ASSET_SIZE = 10 * 1024 * 1024; // 10MB
+        const form = document.getElementById('apkForm');
+        const fileInput = document.getElementById('apkFile');
+        const fileName = document.getElementById('fileName');
+        const sizeAlert = document.getElementById('sizeAlert');
+        const assetsEncryptionCheckbox = document.getElementById('assetsEncryption');
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                fileName.textContent = file.name;
+                checkAssetSize(file);
+            } else {
+                fileName.textContent = 'No file chosen';
+                sizeAlert.style.display = 'none';
+                assetsEncryptionCheckbox.disabled = false;
+            }
+        });
+
+        function checkAssetSize(file) {
+            if (file.size > MAX_ASSET_SIZE) {
+                sizeAlert.style.display = 'block';
+                assetsEncryptionCheckbox.checke = false;
+                assetsEncryptionCheckbox.disabled = true;
+            } else {
+                sizeAlert.style.display = 'none';
+                assetsEncryptionCheckbox.disabled = false;
+            }
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const options = {};
+            for (const [key, value] of formData.entries()) {
+                if (key !== 'apkFile') {
+                    options[key] = true;
+                }
+            }
+            console.log('Selected options:', options);
+            console.log('APK file:', formData.get('apkFile'));
+            // Here you would typically send the data to your server for processing
+            alert('APK submitted for protection. In a real application, processing would begin here.');
+        });
+    </script>
+</body>
+</html>
